@@ -12,10 +12,16 @@ namespace CSAc4yPersistentServiceTestLibrary
 {
     public class PersistentService
     {
-        private AllContext context { get; set; }
-        private Ac4yIdentificationBaseEntityMethods ac4YIdentificationBaseEntityMethods = new Ac4yIdentificationBaseEntityMethods(context);
+        public AllContext context { get; set; }
+        private Ac4yIdentificationBaseEntityMethods ac4YIdentificationBaseEntityMethods { get; set; }
 
+        public PersistentService() { }
 
+        public PersistentService(AllContext allContext)
+        {
+            context = allContext;
+            ac4YIdentificationBaseEntityMethods = new Ac4yIdentificationBaseEntityMethods(context);
+        }
         public GetObjectResponse GetFirstByTemplate(int id)
         {
             var response = new GetObjectResponse();
