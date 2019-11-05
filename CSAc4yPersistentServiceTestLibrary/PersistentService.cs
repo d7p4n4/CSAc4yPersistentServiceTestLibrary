@@ -21,7 +21,7 @@ namespace CSAc4yPersistentServiceTestLibrary
             var response = new GetObjectResponse();
             try
             {
-                response.setObject(ac4YIdentificationBaseEntityMethods.findFirstById(id));
+                response.Object = (ac4YIdentificationBaseEntityMethods.findFirstById(id));
                 response.Result = new Ac4yProcessResult() { Code = "1" };
             }
             catch (Exception exception)
