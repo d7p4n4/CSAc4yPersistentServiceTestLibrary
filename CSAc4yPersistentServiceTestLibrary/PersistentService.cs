@@ -1,26 +1,23 @@
-﻿using CSAc4y.Class;
+﻿
 using CSAc4yObjectService.Class;
 using CSAc4yService.Class;
-using DataAccess;
+using d7p4n4.EFMethods.Class;
+using d7p4n4.Final.Class;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSAc4yPersistentServiceTestLibrary
 {
     public class PersistentService
     {
-        public AllContext context { get; set; }
+        public string baseName { get; set; }
         private Ac4yIdentificationBaseEntityMethods ac4YIdentificationBaseEntityMethods { get; set; }
 
         public PersistentService() { }
 
-        public PersistentService(AllContext allContext)
+        public PersistentService(string newBaseName)
         {
-            context = allContext;
-            ac4YIdentificationBaseEntityMethods = new Ac4yIdentificationBaseEntityMethods(context);
+            baseName = newBaseName;
+            ac4YIdentificationBaseEntityMethods = new Ac4yIdentificationBaseEntityMethods(baseName);
         }
         public GetObjectResponse GetFirstByTemplate(int id)
         {
@@ -43,7 +40,7 @@ namespace CSAc4yPersistentServiceTestLibrary
             var response = new GetObjectResponse();
             try
             {
-                ac4YIdentificationBaseEntityMethods.addNewAc4yIdentificationBase(ac4YIdentificationBase);
+                ac4YIdentificationBaseEntityMethods.addNew(ac4YIdentificationBase);
                 response.Result = new Ac4yProcessResult() { Code = "1" };
             }
             catch (Exception exception)
